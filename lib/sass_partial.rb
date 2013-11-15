@@ -1,0 +1,2 @@
+class SassPartial < File
+end
