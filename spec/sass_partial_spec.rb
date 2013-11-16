@@ -9,7 +9,7 @@ describe "SassPartial" do
     end
     it "should create multiple files" do
       Dir.chdir("test_files")
-      SassPartial.new ["_1.sass", "_2.sass"]
+      SassPartial.new "_1.sass", "_2.sass"
       Dir.chdir(@root_dir)
       Dir.entries("test_files").include?("_2.sass").should eq true
     end
