@@ -1,5 +1,5 @@
 class SassPartial < File
-  def initialize *files
-    files.each{|file| File.open file, "w"}
+  def self.new *files
+    files.each{|file| super file, "w"}
   end
 end
