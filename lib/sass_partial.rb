@@ -1,5 +1,6 @@
-class SassPartial < File
+class SassPartial
   def self.new *files
-    files.each{|file| super file, "w"}
+    puts files
+    files.each{|file| File.open file, "w"}
   end
 end
