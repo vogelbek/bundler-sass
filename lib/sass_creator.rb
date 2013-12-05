@@ -1,4 +1,4 @@
-class SassPartial
+class SassCreator
   
   def initialize file_hash
     file_hash.each do |file, dependancy_list| 
