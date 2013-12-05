@@ -7,7 +7,7 @@ class SassCreator
     @dependancies = file_hash
   end
 
-  def build_imports
+  def build_import_comments
     @dependancies.each do |file, dependancy_list|
       
       File.open(file, 'r+') do |file|
@@ -19,7 +19,7 @@ class SassCreator
     end
   end
 
-  def build_directives
+  def build_imports
     @dependancies.each do |file, dependancy_list|
 
       File.open(file, 'r+') do |file|

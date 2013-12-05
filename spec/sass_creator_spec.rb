@@ -28,15 +28,15 @@ describe "SassCreator" do
   context "create files with dependancies" do
     it "should create a file with an //import statement" do
       @partial = SassCreator.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
-      @partial.build_imports
+      @partial.build_import_comments
       File.open("_1.sass", 'r').each do |line|
         line.chomp.should eq '//import "_2.sass"'
       end
     end
 
-    it "should create a file with many //import statements" do
+    it "should create a file with many //import comments" do
       @partial = SassCreator.new({"_1.sass" => ["_2.sass", "_3.sass", "_4.sass"]})
-      @partial.build_imports
+      @partial.build_import_comments
       @lines = String.new
       File.open("_1.sass", 'r').each_with_index do |line, index|
         @lines << line
@@ -48,7 +48,7 @@ describe "SassCreator" do
   context "create files with @import directives" do
     it "should create a file with @import directives" do
       @build = SassCreator.new({"manifest.sass" => ["_1.sass", "_3.sass", "_2.sass"]})
-      @build.build_directives
+      @build.build_imports
       @lines = String.new
       File.open("manifest.sass", 'r').each do |line|
         @lines << line
