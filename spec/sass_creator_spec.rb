@@ -44,6 +44,17 @@ describe "SassCreator" do
     end
   end
 
+  context "create files with @import directives" do
+    it "should create a file with @import directives" do
+      @build = SassCreator.new({"manifest.sass" => ["_1.sass", "_3.sass", "_2.sass"]})
+      @build.build_directives
+      File.open("manifest.sass", 'r').each do |line|
+        @line = line.chomp
+      end
+      @line.should eq '@import "_2.sass"'
+    end
+  end
+
   after(:each) do
     Dir.chdir @root_dir
   end
