@@ -12,16 +12,16 @@ describe "SassCreator" do
   
   context "create partials" do
     
-    it "should create multiple files" do
+    it "should create multiple Sass files" do
       SassCreator.new({"_1.sass" => [], "_2.sass" => []})
       Dir.chdir(@root_dir)
       Dir.entries("test_files").include?("_2.sass").should eq true
     end
 
     it "should make any kind of Sass file" do
-      SassCreator.new({"1.sass" => [], "2.sass" => [], "3.sass" => []})
+      SassCreator.new({"1.sass" => [], "2.sass.css" => [], "3.sass" => []})
       Dir.chdir(@root_dir)
-      Dir.entries("test_files").include?("2.sass").should eq true
+      Dir.entries("test_files").include?("2.sass.css").should eq true
     end
   end
 
