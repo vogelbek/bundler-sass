@@ -20,10 +20,10 @@ describe "SassPartial" do
   context "create files with dependancies" do
     it "should create a file with an //import statement" do
       Dir.chdir("test_files")
-      SassPartial.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
-      SassPartial.build_imports
-      File.open("_1.sass", 'r') do |line|
-        line.should include '//import "_1.sass"'
+      @partial = SassPartial.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
+      @partial.build_imports
+      File.open("_1.sass", 'r').each do |line|
+        line.should eq '//import "_2.sass"'
       end
     end
   end
