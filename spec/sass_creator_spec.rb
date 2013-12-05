@@ -37,10 +37,11 @@ describe "SassCreator" do
     it "should create a file with many //import statements" do
       @partial = SassCreator.new({"_1.sass" => ["_2.sass", "_3.sass", "_4.sass"]})
       @partial.build_imports
+      @lines = String.new
       File.open("_1.sass", 'r').each_with_index do |line, index|
-        @line = line.chomp
+        @lines << line
       end
-      @line.should eq '//import "_4.sass"'
+      @lines.should eq "//import \"_2.sass\"\n//import \"_3.sass\"\n//import \"_4.sass\"\n"
     end
   end
 
@@ -48,10 +49,11 @@ describe "SassCreator" do
     it "should create a file with @import directives" do
       @build = SassCreator.new({"manifest.sass" => ["_1.sass", "_3.sass", "_2.sass"]})
       @build.build_directives
+      @lines = String.new
       File.open("manifest.sass", 'r').each do |line|
-        @line = line.chomp
+        @lines << line
       end
-      @line.should eq '@import "_2.sass"'
+      @lines.should eq "@import \"_1.sass\"\n@import \"_3.sass\"\n@import \"_2.sass\"\n"
     end
   end
 
