@@ -2,23 +2,36 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_partial')
 
 describe "SassPartial" do
-  context "create and destroy" do
-    before(:all) do
-      @root_dir = Dir.getwd
-      Dir.mkdir("test_files")
-    end
+  before(:all) do
+    @root_dir = Dir.getwd
+    Dir.mkdir("test_files")
+    Dir.chdir("test_files")
+  end
+  context "create partials" do
+    
     it "should create multiple files" do
-      Dir.chdir("test_files")
-      SassPartial.new "_1.sass", "_2.sass"
+      
+      SassPartial.new({"_1.sass" => [], "_2.sass" => []})
       Dir.chdir(@root_dir)
       Dir.entries("test_files").include?("_2.sass").should eq true
     end
-    after(:all) do
-      Dir.chdir(@root_dir) # in case test has failed and couldn't chdir back to root
-      Dir.foreach("test_files") do |partial|
-        File.delete("test_files/" + partial) unless partial == '.' or partial == '..'
+    
+  end
+  context "create files with dependancies" do
+    it "should create a file with an //import statement" do
+      Dir.chdir("test_files")
+      SassPartial.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
+      SassPartial.build_imports
+      File.open("_1.sass", 'r') do |line|
+        line.should include '//import "_1.sass"'
       end
-      Dir.rmdir("test_files")
     end
+  end
+  after(:all) do
+    Dir.chdir(@root_dir) # in case test has failed and couldn't chdir back to root
+    Dir.foreach("test_files") do |partial|
+      File.delete("test_files/" + partial) unless partial == '.' or partial == '..'
+    end
+    Dir.rmdir("test_files")
   end
 end
