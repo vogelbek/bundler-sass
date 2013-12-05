@@ -9,11 +9,13 @@ class SassPartial
 
   def build_imports
     @dependancies.each do |file, dependancy_list|
-      dependancy_list.each do |dependancy|
-        File.open file, 'r+' do |line|
-          line.write "//import \"#{dependancy.to_s}\""
+      
+      File.open(file, 'r+') do |file|
+        dependancy_list.each do |dependancy|
+          file.write "//import \"#{dependancy.to_s}\"\n"
         end
       end
+      
     end
   end
 end

@@ -23,8 +23,20 @@ describe "SassPartial" do
       @partial = SassPartial.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
       @partial.build_imports
       File.open("_1.sass", 'r').each do |line|
-        line.should eq '//import "_2.sass"'
+        line.chomp.should eq '//import "_2.sass"'
       end
+      Dir.chdir @root_dir
+    end
+
+    it "should create a file with many //import statements" do
+      Dir.chdir("test_files")
+      @partial = SassPartial.new({"_1.sass" => ["_2.sass", "_3.sass", "_4.sass"]})
+      @partial.build_imports
+      File.open("_1.sass", 'r').each_with_index do |line, index|
+        @line = line.chomp
+      end
+      @line.should eq '//import "_4.sass"'
+      Dir.chdir @root_dir
     end
   end
   after(:all) do
