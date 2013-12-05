@@ -17,7 +17,12 @@ describe "SassCreator" do
       Dir.chdir(@root_dir)
       Dir.entries("test_files").include?("_2.sass").should eq true
     end
-    
+
+    it "should make any kind of Sass file" do
+      SassCreator.new({"1.sass" => [], "2.sass" => [], "3.sass" => []})
+      Dir.chdir(@root_dir)
+      Dir.entries("test_files").include?("2.sass").should eq true
+    end
   end
 
   context "create files with dependancies" do
