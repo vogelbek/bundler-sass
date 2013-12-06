@@ -25,7 +25,7 @@ describe "SassCreator" do
     end
   end
 
-  context "create files with dependancies" do
+  context "create files with dependencies" do
     it "should create a file with an //import statement" do
       @partial = SassCreator.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
       @partial.build_import_comments

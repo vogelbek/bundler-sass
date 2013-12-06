@@ -10,14 +10,14 @@ describe "SassReader" do
   before(:each) do
     Dir.chdir("test_files")
     @filename_1 = "_1.sass"
-    @dependancies_1 = ["_2.sass", "_3.sass"]
-    @file_1 = SassCreator.new({@filename_1 => @dependancies_1})
+    @dependencies_1 = ["_2.sass", "_3.sass"]
+    @file_1 = SassCreator.new({@filename_1 => @dependencies_1})
   end
 
-  context "build a dependancy list" do
+  context "build a dependency list" do
 
     it "should read all //import comments into an array" do
-      SassReader.dependancies(@filename_1).should eq @dependancies_1
+      SassReader.dependencies(@filename_1).should eq @dependencies_1
     end
   end
 
