@@ -7,7 +7,22 @@ describe "SassReader" do
     @root_dir = Dir.getwd
     Dir.mkdir("test_files")
   end
+  before(:each) do
+    Dir.chdir("test_files")
+    @filename_1 = "_1.sass"
+    @file_1 = SassReader.new({@filename_1 => ["_2.sass", "_3.sass"]})
+  end
 
+  context "build a dependancy list" do
+
+    it "should read all //import comments into an array" do
+      pending
+    end
+  end
+
+  after(:each) do
+    Dir.chdir @root_dir
+  end
   after(:all) do
     Dir.foreach("test_files") do |file|
       File.delete("test_files/" + file) unless file == '.' or file == '..'
