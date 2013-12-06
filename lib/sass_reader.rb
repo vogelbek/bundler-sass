@@ -1,4 +1,4 @@
-class SassReader
+module SassReader
   def self.dependencies file
     array = []
     File.open(file, 'r').each do |line|
