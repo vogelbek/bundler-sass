@@ -3,11 +3,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_creator')
 
 describe "SassCreator module" do
   before(:all) do
-    @root_dir = Dir.getwd
-    Dir.mkdir("test_files")
+    build_test_directory
   end
+  
   before(:each) do
-    Dir.chdir("test_files")
+    enter_test_directory
   end
   
   context "create partials" do
@@ -56,15 +56,11 @@ describe "SassCreator module" do
       @lines.should eq "@import \"_1.sass\"\n@import \"_3.sass\"\n@import \"_2.sass\"\n"
     end
   end
-
+  
   after(:each) do
-    Dir.chdir @root_dir
+    leave_test_directory
   end
-
   after(:all) do
-    Dir.foreach("test_files") do |file|
-      File.delete("test_files/" + file) unless file == '.' or file == '..'
-    end
-    Dir.rmdir("test_files")
+    teardown_test_directory
   end
 end

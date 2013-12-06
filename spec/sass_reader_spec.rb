@@ -4,11 +4,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_reader')
 
 describe "SassReader" do
   before(:all) do
-    @root_dir = Dir.getwd
-    Dir.mkdir("test_files")
+    build_test_directory
   end
   before(:each) do
-    Dir.chdir("test_files")
+    enter_test_directory
+
     @filename_1 = "_1.sass"
     @dependencies_1 = ["_2.sass", "_3.sass"]
     @hash_1 = {@filename_1 => @dependencies_1}
@@ -24,12 +24,9 @@ describe "SassReader" do
   end
 
   after(:each) do
-    Dir.chdir @root_dir
+    leave_test_directory
   end
   after(:all) do
-    Dir.foreach("test_files") do |file|
-      File.delete("test_files/" + file) unless file == '.' or file == '..'
-    end
-    Dir.rmdir("test_files")
+    teardown_test_directory
   end
 end
