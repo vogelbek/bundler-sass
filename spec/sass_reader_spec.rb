@@ -12,6 +12,7 @@ describe "SassReader" do
     @filename_1 = "_1.sass"
     @dependencies_1 = ["_2.sass", "_3.sass"]
     @file_1 = SassCreator.new({@filename_1 => @dependencies_1})
+    @file_1.build_import_comments
   end
 
   context "build a dependency list" do
