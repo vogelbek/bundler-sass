@@ -1,3 +1,4 @@
 class SassReader
-  self.dependencies
+  def self.dependencies file
+  end
 end
