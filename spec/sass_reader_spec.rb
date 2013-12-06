@@ -27,6 +27,9 @@ describe "SassReader" do
     end
   end
 
+  context "find all the sass files in a directory" do
+  end
+
   after(:each) do
     leave_test_directory
   end
