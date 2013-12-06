@@ -19,7 +19,7 @@ describe "SassReader" do
   context "build a dependency hash" do
 
     it "should read all //import comments into an hash" do
-      SassReader.dependencies(@filename_1).should eq {@hash_1}
+      SassReader.dependencies(@filename_1).should eq @hash_1
     end
   end
 
