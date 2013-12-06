@@ -20,10 +20,19 @@ describe "SassReader" do
       @hash_1 = {@filename_1 => @dependencies_1}
       @file_1 = SassCreator::SassFile.new(@hash_1)
       @file_1.build_import_comments
+      @filename_2 = "_2.sass"
+      @dependencies_2 = []
+      @hash_2 = {@filename_2 => @dependencies_2}
+      @file_2 = SassCreator::SassFile.new(@hash_2)
+      @file_2.build_import_comments
     end
 
     it "should read all //import comments into an hash" do
       SassReader.dependencies(@filename_1).should eq @hash_1
+    end
+
+    it "should be cool with a file without dependencies" do
+      SassReader.dependencies(@filename_2).should eq @hash_2
     end
   end
 
