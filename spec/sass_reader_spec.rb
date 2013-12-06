@@ -20,7 +20,8 @@ describe "SassReader" do
       @hash_1 = {@filename_1 => @dependencies_1}
       @file_1 = SassCreator::SassFile.new(@hash_1)
       @file_1.build_import_comments
-      @filename_2 = "_2.sass"
+
+      @filename_2 = "_empty.sass"
       @dependencies_2 = []
       @hash_2 = {@filename_2 => @dependencies_2}
       @file_2 = SassCreator::SassFile.new(@hash_2)
