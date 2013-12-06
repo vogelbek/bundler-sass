@@ -9,14 +9,18 @@ describe "SassReader" do
   before(:each) do
     enter_test_directory
 
-    @filename_1 = "_1.sass"
-    @dependencies_1 = ["_2.sass", "_3.sass"]
-    @hash_1 = {@filename_1 => @dependencies_1}
-    @file_1 = SassCreator::SassFile.new(@hash_1)
-    @file_1.build_import_comments
+    
   end
 
   context "build a dependency hash" do
+
+    before(:each) do
+      @filename_1 = "_1.sass"
+      @dependencies_1 = ["_2.sass", "_3.sass"]
+      @hash_1 = {@filename_1 => @dependencies_1}
+      @file_1 = SassCreator::SassFile.new(@hash_1)
+      @file_1.build_import_comments
+    end
 
     it "should read all //import comments into an hash" do
       SassReader.dependencies(@filename_1).should eq @hash_1
