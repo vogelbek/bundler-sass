@@ -10,7 +10,7 @@ describe "SassReader" do
   before(:each) do
     Dir.chdir("test_files")
     @filename_1 = "_1.sass"
-    @file_1 = SassReader.new({@filename_1 => ["_2.sass", "_3.sass"]})
+    @file_1 = SassCreator.new({@filename_1 => ["_2.sass", "_3.sass"]})
   end
 
   context "build a dependancy list" do
