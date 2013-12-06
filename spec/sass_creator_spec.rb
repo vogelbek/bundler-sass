@@ -62,8 +62,8 @@ describe "SassCreator" do
   end
 
   after(:all) do
-    Dir.foreach("test_files") do |partial|
-      File.delete("test_files/" + partial) unless partial == '.' or partial == '..'
+    Dir.foreach("test_files") do |file|
+      File.delete("test_files/" + file) unless file == '.' or file == '..'
     end
     Dir.rmdir("test_files")
   end
