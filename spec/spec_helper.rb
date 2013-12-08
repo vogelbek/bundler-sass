@@ -9,7 +9,6 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   def build_test_directory directory
-    @root_dir = Dir.getwd
     Dir.mkdir(directory)
   end
 
@@ -17,8 +16,8 @@ RSpec.configure do |config|
     Dir.chdir("test_files")
   end
 
-  def leave_test_directory
-    Dir.chdir @root_dir
+  def leave_test_directory directory
+    Dir.chdir directory
   end
 
   def teardown_test_directory

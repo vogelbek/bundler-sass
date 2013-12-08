@@ -4,6 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_creator')
 
 describe "SassTree" do
   before(:all) do
+    @root_directory = Dir.getwd
     build_test_directory "test_files"
   end
   before(:each) do
@@ -11,7 +12,7 @@ describe "SassTree" do
   end
 
   after(:each) do
-    leave_test_directory
+    leave_test_directory @root_directory
   end
   after(:all) do
     teardown_test_directory
