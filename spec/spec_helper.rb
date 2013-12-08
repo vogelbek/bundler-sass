@@ -20,9 +20,9 @@ RSpec.configure do |config|
     Dir.chdir directory
   end
 
-  def teardown_test_directory
-    destroy_files "test_files"
-    Dir.rmdir "test_files"
+  def teardown_test_directory directory
+    destroy_files directory
+    Dir.rmdir directory
   end
 
   def destroy_files directory

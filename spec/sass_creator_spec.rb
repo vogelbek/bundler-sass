@@ -62,6 +62,6 @@ describe "SassCreator module" do
     leave_test_directory @root_directory
   end
   after(:all) do
-    teardown_test_directory
+    teardown_test_directory "test_files"
   end
 end
