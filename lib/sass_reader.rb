@@ -9,7 +9,9 @@ module SassReader
 
   def self.list_partials
     Dir.foreach(Dir.getwd).inject([]) do |array, file|
-      array << file
+      array << file if file =~ /\A_/ and file =~ /.sass\z/ 
+      #http://rubular.com/r/DMlfsegYIK for underscore at start
+      #http://rubular.com/r/fRM0JX3Nv3 for .sass at end
       array
     end
   end
