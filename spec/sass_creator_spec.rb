@@ -8,7 +8,7 @@ describe "SassCreator module" do
   end
   
   before(:each) do
-    enter_test_directory
+    enter_test_directory "test_files"
   end
   
   context "create partials" do

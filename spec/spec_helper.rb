@@ -9,11 +9,11 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
   def build_test_directory directory
-    Dir.mkdir(directory)
+    Dir.mkdir directory
   end
 
-  def enter_test_directory
-    Dir.chdir("test_files")
+  def enter_test_directory directory
+    Dir.chdir directory
   end
 
   def leave_test_directory directory

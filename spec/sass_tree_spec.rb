@@ -8,7 +8,7 @@ describe "SassTree" do
     build_test_directory "test_files"
   end
   before(:each) do
-    enter_test_directory
+    enter_test_directory "test_files"
   end
 
   after(:each) do
