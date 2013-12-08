@@ -10,10 +10,6 @@ describe "SassTree" do
     enter_test_directory
   end
 
-  context "extract dependency hashes from files" do
-
-  end
-
   after(:each) do
     leave_test_directory
   end
