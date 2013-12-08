@@ -39,15 +39,22 @@ describe "SassReader" do
 
   context "find all the sass partials in a directory" do
     before(:each) do
+      @filename_1 = "_1.sass"
+
+      @filename_2 = "A.sass"
+
+      @filename_3 = "_2.sass"
     end
-    it "should create an array of sass partial filenames in a directory" do
+    it "should create an array of partial filenames in a directory" do
       pending
     end
-    it "should create an array of dependency hashes for all the partials in the directory" do
-      pending
-    end
-    it "should find partials in subdirectories" do
+    it "should create an array of partial filenames in subdirectories" do
       pending "dont yet know how this will work"
+    end
+  end
+  context "get the dependencies ready for tree sorting" do
+    it "should create an hash of dependency hashes for all the partials in the array" do
+      pending
     end
   end
 
