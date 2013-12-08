@@ -8,9 +8,9 @@ require 'bundler-sass'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  def build_test_directory
+  def build_test_directory directory
     @root_dir = Dir.getwd
-    Dir.mkdir("test_files")
+    Dir.mkdir(directory)
   end
 
   def enter_test_directory

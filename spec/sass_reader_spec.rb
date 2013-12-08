@@ -4,7 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_reader')
 
 describe "SassReader" do
   before(:all) do
-    build_test_directory
+    build_test_directory "test_files"
   end
   before(:each) do
     enter_test_directory

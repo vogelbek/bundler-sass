@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_creator')
 
 describe "SassCreator module" do
   before(:all) do
-    build_test_directory
+    build_test_directory "test_files"
   end
   
   before(:each) do
