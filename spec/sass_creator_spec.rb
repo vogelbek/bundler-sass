@@ -3,12 +3,13 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_creator')
 
 describe "SassCreator module" do
   before(:all) do
+    @test_directory = "test_files"
     @root_directory = Dir.getwd
-    build_test_directory "test_files"
+    build_test_directory @test_directory
   end
   
   before(:each) do
-    enter_test_directory "test_files"
+    enter_test_directory @test_directory
   end
   
   context "create partials" do
@@ -16,13 +17,13 @@ describe "SassCreator module" do
     it "should create multiple Sass files" do
       SassCreator::SassFile.new({"_1.sass" => [], "_2.sass" => []})
       Dir.chdir(@root_directory)
-      Dir.entries("test_files").include?("_2.sass").should eq true
+      Dir.entries(@test_directory).include?("_2.sass").should eq true
     end
 
     it "should make any kind of Sass file" do
       SassCreator::SassFile.new({"1.sass" => [], "2.sass.css" => [], "3.sass" => []})
       Dir.chdir(@root_directory)
-      Dir.entries("test_files").include?("2.sass.css").should eq true
+      Dir.entries(@test_directory).include?("2.sass.css").should eq true
     end
   end
 
@@ -62,6 +63,6 @@ describe "SassCreator module" do
     leave_test_directory @root_directory
   end
   after(:all) do
-    teardown_test_directory "test_files"
+    teardown_test_directory @test_directory
   end
 end

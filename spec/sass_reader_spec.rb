@@ -4,11 +4,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_reader')
 
 describe "SassReader" do
   before(:all) do
+    @test_directory = "test_files"
     @root_directory = Dir.getwd
-    build_test_directory "test_files"
+    build_test_directory @test_directory
   end
   before(:each) do
-    enter_test_directory "test_files"
+    enter_test_directory @test_directory
 
     
   end
@@ -33,7 +34,7 @@ describe "SassReader" do
       SassReader.dependencies(@filename_2).should eq @hash_2
     end
     after(:all) do
-      destroy_files "test_files"
+      destroy_files @test_directory
     end
   end
 
@@ -66,6 +67,6 @@ describe "SassReader" do
     leave_test_directory @root_directory
   end
   after(:all) do
-    teardown_test_directory "test_files"
+    teardown_test_directory @test_directory
   end
 end
