@@ -31,6 +31,9 @@ describe "SassReader" do
     it "should be cool with a file without dependencies" do
       SassReader.dependencies(@filename_2).should eq @hash_2
     end
+    after(:all) do
+      destroy_files "test_files"
+    end
   end
 
   context "process all the sass partials in a directory" do

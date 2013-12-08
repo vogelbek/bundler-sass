@@ -22,10 +22,14 @@ RSpec.configure do |config|
   end
 
   def teardown_test_directory
-    Dir.foreach("test_files") do |file|
-      File.delete("test_files/" + file) unless file == '.' or file == '..'
+    destroy_files "test_files"
+    Dir.rmdir "test_files"
+  end
+
+  def destroy_files directory
+    Dir.foreach(directory) do |file|
+      File.delete("#{directory}/" + file) unless file == '.' or file == '..'
     end
-    Dir.rmdir("test_files")
   end
 
   def build_file_and_hash filename, dependencies
