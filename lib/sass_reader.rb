@@ -6,4 +6,11 @@ module SassReader
     clean_array = array.map {|entry| entry.gsub(/\/\/import\s\"/,"").gsub(/\"\n/,"")}
     hash = {file => clean_array}
   end
+
+  def self.list_partials
+    Dir.foreach(Dir.getwd).inject([]) do |array, file|
+      array << file
+      array
+    end
+  end
 end
