@@ -48,7 +48,7 @@ describe "SassReader" do
       @hash_3 = build_file_and_hash @filename_3, @dependencies_3
     end
     it "should create an array of partial filenames in a directory" do
-      pending
+      SassReader.list_partials.should eq [@filename_1, @filename_3]
     end
     it "should create an array of partial filenames in subdirectories" do
       pending "dont yet know how this will work"
