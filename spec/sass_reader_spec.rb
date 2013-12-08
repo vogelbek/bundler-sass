@@ -37,13 +37,25 @@ describe "SassReader" do
     end
   end
 
-  context "find all the sass partials in a directory" do
+  context "process all the sass partials in a directory" do
     before(:each) do
       @filename_1 = "_1.sass"
+      @dependencies_1 = ["_2.sass"]
+      @hash_1 = {@filename_1 => @dependencies_1}
+      @file_1 = SassCreator::SassFile.new(@hash_1)
+      @file_1.build_import_comments
 
       @filename_2 = "A.sass"
+      @dependencies_2 = ["_1.sass"]
+      @hash_2 = {@filename_2 => @dependencies_2}
+      @file_2 = SassCreator::SassFile.new(@hash_2)
+      @file_2.build_import_comments
 
       @filename_3 = "_2.sass"
+      @dependencies_3 = []
+      @hash_3 = {@filename_3 => @dependencies_3}
+      @file_3 = SassCreator::SassFile.new(@hash_3)
+      @file_3.build_import_comments
     end
     it "should create an array of partial filenames in a directory" do
       pending
@@ -51,8 +63,6 @@ describe "SassReader" do
     it "should create an array of partial filenames in subdirectories" do
       pending "dont yet know how this will work"
     end
-  end
-  context "get the dependencies ready for tree sorting" do
     it "should create an hash of dependency hashes for all the partials in the array" do
       pending
     end
