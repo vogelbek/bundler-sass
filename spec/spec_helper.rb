@@ -2,6 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
 require 'bundler-sass'
+require 'fileutils'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -21,14 +22,8 @@ RSpec.configure do |config|
   end
 
   def teardown_test_directory directory
-    destroy_files directory
-    Dir.rmdir directory
-  end
-
-  def destroy_files directory
-    Dir.foreach(directory) do |file|
-      File.delete("#{directory}/" + file) unless file == '.' or file == '..'
-    end
+    
+    FileUtils.rm_rf directory
   end
 
   def build_file_and_hash filename, dependencies
