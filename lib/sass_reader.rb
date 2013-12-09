@@ -15,7 +15,9 @@ module SassReader
   def self.list_partials_in_folder folder
     Dir.foreach(folder).inject([]) do |array, file|
       if File.directory?(file) and file != '.' and file != '..'
-        list_partials_in_folder(file).each{|nested_file| array << nested_file}
+        list_partials_in_folder(file).each do |nested_file|
+          array << "#{file}/#{nested_file}"
+        end
       else
         array << file if file =~ /\A_/ and file =~ /.sass\z/ 
         #http://rubular.com/r/DMlfsegYIK for underscore at start
