@@ -72,11 +72,20 @@ describe "SassReader" do
       @dependencies_5 = ["#{@nested_directory}/_1_nest.sass"]
       @hash_5 = build_file_and_hash @filename_5, @dependencies_5
 
+      @second_nested = "secondnest"      
+      Dir.mkdir @second_nested
+      Dir.chdir @second_nested
+
+      @filename_6 = "_3_nest_nest.scss"
+      @dependencies_6 = ["#{@nested_directory}/_1_nest.sass"]
+      @hash_6 = build_file_and_hash @filename_6, @dependencies_6
+
       Dir.chdir @local_root
       SassReader.list_partials.should eq [@filename_1,
                                           @filename_3,
                                           "#{@nested_directory}/#{@filename_4}",
-                                          "#{@nested_directory}/#{@filename_5}"]
+                                          "#{@nested_directory}/#{@filename_5}",
+                                          "#{@nested_directory}/#{@second_nested}/#{@filename_5}"]
     end
     it "should create an hash of dependency hashes for all the partials in the array" do
       pending
