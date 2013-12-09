@@ -33,8 +33,11 @@ describe "SassReader" do
     it "should be cool with a file without dependencies" do
       SassReader.dependencies(@filename_2).should eq @hash_2
     end
+
     after(:all) do
-      destroy_files @test_directory
+      teardown_test_directory @test_directory
+
+      build_test_directory @test_directory
     end
   end
 
