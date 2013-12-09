@@ -19,9 +19,9 @@ module SassReader
           array << "#{file}/#{nested_file}"
         end
       else
-        array << file if file =~ /\A_/ and (file =~ /.sass\z/ or file =~ /.scss\z/) 
+        array << file if file =~ /\A_/ and file =~ /.s[ac]ss\z/
         #http://rubular.com/r/DMlfsegYIK for underscore at start
-        #http://rubular.com/r/fRM0JX3Nv3 for .sass at end (catches common .css.sass)
+        #http://rubular.com/r/QO0kmaTBig for .sass at end (catches common .css.sass)
       end
       array
     end
