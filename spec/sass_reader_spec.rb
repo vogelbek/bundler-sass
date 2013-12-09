@@ -59,20 +59,20 @@ describe "SassReader" do
       SassReader.list_partials.should eq [@filename_1, @filename_3]
     end
     it "should create an array of partial filenames in subdirectories" do
+      @local_root = Dir.getwd
       @nested_directory = "nest"      
-      build_test_directory @nested_directory
-      enter_test_directory @nested_directory
-
-      @filename_4 = "_nest.sass"
+      Dir.mkdir @nested_directory
+      Dir.chdir @nested_directory
+      
+      @filename_4 = "_1_nest.sass"
       @dependencies_4 = ["_2.sass"]
       @hash_4 = build_file_and_hash @filename_4, @dependencies_4
 
-      
+      @filename_5 = "_2_nest.sass"
+      @dependencies_5 = ["#{@nested_directory}/_1_nest.sass"]
+      @hash_5 = build_file_and_hash @filename_5, @dependencies_5
 
-      @filename_5 = "_call.sass"
-      @dependencies_4 = ["#{@nested_directory}/_nest.sass"]
-      @hash_4 = build_file_and_hash @filename_4, @dependencies_4
-
+      Dir.chdir @local_root
       SassReader.list_partials.should eq [@filename_1, @filename_3, @filename_4, @filename_5]
     end
     it "should create an hash of dependency hashes for all the partials in the array" do
