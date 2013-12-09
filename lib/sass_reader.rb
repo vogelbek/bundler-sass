@@ -8,21 +8,8 @@ module SassReader
   end
 
   def self.list_partials
-    list_partials_in_folder(Dir.getwd)
-  end
-
-  private
-  def self.list_partials_in_folder folder
-    Dir.foreach(folder).inject([]) do |array, file|
-      if File.directory?(file) and file != '.' and file != '..'
-        list_partials_in_folder(file).each do |nested_file|
-          array << "#{file}/#{nested_file}"
-        end
-      else
-        array << file if file =~ /\A_\S+s[ac]ss\z/
-        #http://rubular.com/r/YCT1k8IaIv
-      end
-      array
-    end
+    #list_partials_in_folder(Dir.getwd)
+    Dir['**/*.*'].select{|partial| partial =~ /_\S+s[ac]ss\z/}
+    #http://rubular.com/r/YCT1k8IaIv, but not at the start of string (for nested files)
   end
 end

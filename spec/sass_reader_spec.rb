@@ -75,6 +75,7 @@ describe "SassReader" do
       @second_nested = "secondnest"      
       Dir.mkdir @second_nested
       Dir.chdir @second_nested
+      puts "Now in #{Dir.getwd}"
 
       @filename_6 = "_3_nest_nest.scss"
       @dependencies_6 = ["#{@nested_directory}/_1_nest.sass"]
