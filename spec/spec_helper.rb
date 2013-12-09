@@ -9,20 +9,8 @@ require 'fileutils'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  def build_test_directory directory
-    Dir.mkdir directory
-  end
-
-  def enter_test_directory directory
-    Dir.chdir directory
-  end
-
-  def leave_test_directory directory
-    Dir.chdir directory
-  end
 
   def teardown_test_directory directory
-    
     FileUtils.rm_rf directory
   end
 

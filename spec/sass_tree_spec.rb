@@ -6,14 +6,14 @@ describe "SassTree" do
   before(:all) do
     @test_directory = "test_files"
     @root_directory = Dir.getwd
-    build_test_directory @test_directory
+    Dir.mkdir @test_directory
   end
   before(:each) do
-    enter_test_directory @test_directory
+    Dir.chdir @test_directory
   end
 
   after(:each) do
-    leave_test_directory @root_directory
+    Dir.chdir @root_directory
   end
   after(:all) do
     teardown_test_directory @test_directory
