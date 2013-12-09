@@ -68,7 +68,7 @@ describe "SassReader" do
       @dependencies_4 = ["_2.sass"]
       @hash_4 = build_file_and_hash @filename_4, @dependencies_4
 
-      @filename_5 = "_2_nest.sass"
+      @filename_5 = "_2_nest.scss"
       @dependencies_5 = ["#{@nested_directory}/_1_nest.sass"]
       @hash_5 = build_file_and_hash @filename_5, @dependencies_5
 

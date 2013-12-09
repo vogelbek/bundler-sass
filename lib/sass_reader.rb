@@ -21,7 +21,7 @@ module SassReader
       else
         array << file if file =~ /\A_/ and file =~ /.sass\z/ 
         #http://rubular.com/r/DMlfsegYIK for underscore at start
-        #http://rubular.com/r/fRM0JX3Nv3 for .sass at end
+        #http://rubular.com/r/fRM0JX3Nv3 for .sass at end (catches common .css.sass)
       end
       array
     end
