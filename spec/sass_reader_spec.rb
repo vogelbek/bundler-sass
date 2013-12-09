@@ -85,7 +85,7 @@ describe "SassReader" do
                                           @filename_3,
                                           "#{@nested_directory}/#{@filename_4}",
                                           "#{@nested_directory}/#{@filename_5}",
-                                          "#{@nested_directory}/#{@second_nested}/#{@filename_5}"]
+                                          "#{@nested_directory}/#{@second_nested}/#{@filename_6}"]
     end
     it "should create an hash of dependency hashes for all the partials in the array" do
       pending
