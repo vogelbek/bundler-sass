@@ -32,9 +32,9 @@ describe "SassTree" do
       @files.each.with_index do |file, index|
         build_file_and_hash file, @dependencies[index]
       end
-      
+
       # This particular dependency graph only has a single order it can be loaded in
-      SassSort.import_order.should eq [@files[2], @files[1], @files[0]]
+      SassSort.import_order.should eq [@files[2], @files[0], @files[1]]
     end
 
     it "should be able to sort a nested file structure" do
