@@ -55,6 +55,6 @@ task :build_manifest do
   include SassCreator
   import_array = SassSort.import_order
   manifest_hash = {'manifest.sass' => import_array}
-  manifest = SassCreator.new manifest_hash
+  manifest = SassCreator::SassFile.new manifest_hash
   manifest.build_imports
 end
