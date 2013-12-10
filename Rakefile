@@ -18,8 +18,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "bundler-sass"
   gem.homepage = "http://github.com/vogelbek/bundler-sass"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Builds a manifest file for all your sass partials}
+  gem.description = %Q{As opposed to manually building a manifest file for all those sass partials, let this rake task take care of it.}
   gem.email = "adam@nird.us"
   gem.authors = ["Adam Hendricksen"]
   # dependencies defined in Gemfile
@@ -53,8 +53,9 @@ desc "Look at all Sass partials in a folder and build a manifest"
 task :build_manifest do
   include SassSort
   include SassCreator
+  ENV['filename'] ||= "manifest.sass"
   import_array = SassSort.import_order
-  manifest_hash = {'manifest.sass' => import_array}
+  manifest_hash = {ENV['filename'] => import_array}
   manifest = SassCreator::SassFile.new manifest_hash
   manifest.build_imports
 end
