@@ -34,7 +34,7 @@ describe "SassTree" do
       end
 
       # This particular dependency graph only has a single order it can be loaded in
-      SassSort.import_order.should eq [@files[3], @files[2], @files[1]]
+      SassSort.import_order.should eq [@files[2], @files[1], @files[0]]
     end
 
     it "should be able to sort a nested file structure" do
