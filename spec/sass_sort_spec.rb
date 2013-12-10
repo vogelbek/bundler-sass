@@ -62,6 +62,8 @@ describe "SassTree" do
 
       @ordered_list.first.should eq @files[5]
       @ordered_list.index(@files[7]).should be < @ordered_list.index(@files[6])
+      @ordered_list.index(@files[4]).should be < @ordered_list.index(@files[2])
+      @ordered_list.index(@files[3]).should be < @ordered_list.index(@files[1])
     end
   end
 
