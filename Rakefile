@@ -1,5 +1,6 @@
 # encoding: utf-8
-
+require File.expand_path(File.dirname(__FILE__) + '/lib/sass_creator')
+require File.expand_path(File.dirname(__FILE__) + '/lib/sass_sort')
 require 'rubygems'
 require 'bundler'
 begin
@@ -46,4 +47,14 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "bundler-sass #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+desc "Look at all Sass partials in a folder and build a manifest"
+task :build_manifest do
+  include SassSort
+  include SassCreator
+  import_array = SassSort.import_order
+  manifest_hash = {'manifest.sass' => import_array}
+  manifest = SassCreator.new manifest_hash
+  manifest.build_imports
 end
