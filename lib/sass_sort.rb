@@ -8,8 +8,6 @@ class SassSort
     unsorted = SassReader.list_partials
     unsorted.inject([]) do |ordered, file|
       ordered = ordered | depth_first(file, ordered)
-      puts "Ordered: #{ordered}"
-      ordered
     end
   end
 
