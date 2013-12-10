@@ -14,7 +14,6 @@ class SassSort
   private
   def self.depth_first file, sorted
     local_hash = SassReader.dependencies file
-    puts local_hash
     local_depends = local_hash.values
     local_depends.each do |partial|
       unless partial.empty? or sorted.include?(partial[0])
