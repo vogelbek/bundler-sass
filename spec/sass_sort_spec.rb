@@ -49,7 +49,7 @@ describe "SassTree" do
       @dependencies = [ [], #_0.sass
                         ["#{@directories[0]}/_3.sass"], #_1.sass
                         ["#{@directories[0]}/_4.sass"], #_2.sass
-                        ["_2.sass", "#{@directories[1]}/_5.sass"], #_3.sass
+                        ["_2.css.scss", "#{@directories[1]}/_5.sass"], #_3.sass
                         ["#{@directories[1]}/_5.sass", "#{@directories[2]}/_6.sass"], #_4.sass
                         [], #_5.sass
                         ["#{@directories[3]}/_7.sass"], #_6.sass
@@ -58,7 +58,10 @@ describe "SassTree" do
         build_file_and_hash file, @dependencies[index]
       end
       
-      pending "build several directories with multiple partials"
+      @ordered_list = SassSort.import_order
+
+      @ordered_list.first.should eq @files[5]
+      @ordered_list.index(@files[7]).should be < @ordered_list.index(@files[6])
     end
   end
 
