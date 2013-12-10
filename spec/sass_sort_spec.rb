@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_tree')
+require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_sort')
 require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_creator')
 
 describe "SassTree" do
