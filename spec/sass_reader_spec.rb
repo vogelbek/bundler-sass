@@ -75,7 +75,6 @@ describe "SassReader" do
       @second_nested = "secondnest"      
       Dir.mkdir @second_nested
       Dir.chdir @second_nested
-      puts "Now in #{Dir.getwd}"
 
       @filename_6 = "_3_nest_nest.scss"
       @dependencies_6 = ["#{@nested_directory}/_1_nest.sass"]
@@ -88,8 +87,10 @@ describe "SassReader" do
                                           "#{@nested_directory}/#{@filename_5}",
                                           "#{@nested_directory}/#{@second_nested}/#{@filename_6}"]
     end
-    it "should create an hash of dependency hashes for all the partials in the array" do
-      pending
+    it "should create a dependency hashe for all the partials in the array" do
+      @dependency_hash = {@filename_1 => @dependencies_1,
+                          @filename_3 => @dependencies_3}
+      SassReader.build_dependency_hash([@filename_1, @filename_3]).should eq @dependency_hash
     end
   end
 
