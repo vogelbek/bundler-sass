@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+  include SassSort
+  include SassCreator
+  ARGV['filename'] ||= "manifest.sass"
+  import_array = SassSort.import_order
+  manifest_hash = {ARGV['filename'] => import_array}
+  manifest = SassCreator::SassFile.new manifest_hash
+  manifest.build_imports
