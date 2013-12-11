@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require File.expand_path(File.dirname(__FILE__) + '../lib/sass_sort')
-require File.expand_path(File.dirname(__FILE__) + '../lib/sass_reader')
+require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_sort')
+require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_reader')
 
   include SassSort
   include SassCreator
