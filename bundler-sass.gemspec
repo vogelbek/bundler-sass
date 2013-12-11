@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.date = "2013-12-11"
   s.description = "As opposed to manually building a manifest file for all those sass partials, let this rake task take care of it."
   s.email = "adam@nird.us"
+  s.executables = ["bundler-sass"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md"
@@ -25,6 +26,8 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
+    "bin/bundler-sass",
+    "bundler-sass.gemspec",
     "lib/bundler-sass.rb",
     "lib/sass_creator.rb",
     "lib/sass_reader.rb",
