@@ -56,7 +56,7 @@ describe "SassReader" do
       @hash_3 = build_file_and_hash @filename_3, @dependencies_3
     end
     it "should create an array of partial filenames in a directory" do
-      SassReader.list_partials.should eq [@filename_1, @filename_3]
+      SassReader.list_partials.sort.should eq [@filename_3, @filename_1].sort
     end
     it "should create an array of partial filenames in subdirectories" do
       @local_root = Dir.getwd
@@ -81,11 +81,11 @@ describe "SassReader" do
       @hash_6 = build_file_and_hash @filename_6, @dependencies_6
 
       Dir.chdir @local_root
-      SassReader.list_partials.should eq [@filename_1,
-                                          @filename_3,
-                                          "#{@nested_directory}/#{@filename_4}",
+      SassReader.list_partials.sort.should eq [@filename_3,
+                                          @filename_1,
                                           "#{@nested_directory}/#{@filename_5}",
-                                          "#{@nested_directory}/#{@second_nested}/#{@filename_6}"]
+                                          "#{@nested_directory}/#{@filename_4}",
+                                          "#{@nested_directory}/#{@second_nested}/#{@filename_6}"].sort
     end
     it "should create a dependency hashe for all the partials in the array" do
       @dependency_hash = {@filename_1 => @dependencies_1,
