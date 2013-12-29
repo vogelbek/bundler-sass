@@ -4,7 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_creator')
 
   include SassSort
   include SassCreator
-  file_name = "manifest.sass"
+  file_name = ARGV[0] || "manifest.sass"
   import_array = SassSort.import_order
   manifest_hash = {file_name => import_array}
   manifest = SassCreator::SassFile.new manifest_hash
