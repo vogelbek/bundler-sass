@@ -1,16 +1,14 @@
 module SassPartial
   def self.shorthandify string
-    clean_underscore! string
-    clean_scss! string
+    cleaning_agents = [/\_/, /\.scss/]
+    clean! string, cleaning_agents
   end
 
   private
 
-  def self.clean_underscore! string
-    string.gsub! /\_/, ''
-  end
-
-  def self.clean_scss! string
-    string.gsub! /\.scss/, ''
+  def self.clean! string, cleaning_agents
+    cleaning_agents.inject( string ) do |cleaner_string, cleaning_regex|
+      cleaner_string.gsub cleaning_regex, ''
+    end
   end
 end
