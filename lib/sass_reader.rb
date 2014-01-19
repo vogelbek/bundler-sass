@@ -1,18 +1,10 @@
 module SassReader
   def self.dependencies file
-    array = File.open(file, 'r').inject(Array.new) do |array, line|
-      array << line if line =~ /\/\/import /
+    dependency_array = File.open(file, 'r').inject( [] ) do |dependency_array, line|
+      dependency_array << line if line =~ /\/\/import /
     end
-    if array.empty?
-      hash = {file => []}
-    else
-      clean_array = array.map do |entry|
-        clean_import! entry
-        clean_quote! entry
-        clean_return! entry
-      end
-      hash = {file => clean_array}
-    end
+    clean_dependency_array = clean_array( dependency_array )
+    hash = {file => clean_dependency_array}
   end
 
   def self.list_partials
@@ -27,6 +19,14 @@ module SassReader
   end
 
   private
+
+  def self.clean_array dirty_array
+    dirty_array.map do |entry|
+      clean_import! entry
+      clean_quote! entry
+      clean_return! entry
+    end
+  end
 
   def self.clean_import! string
     string.gsub! /\/\/import\s\"/, ""
