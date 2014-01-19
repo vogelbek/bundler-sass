@@ -5,8 +5,8 @@ module SassSort
 
 
   def self.import_order
-    unsorted = SassReader.list_partials
-    unsorted.inject([]) do |ordered, file|
+    unsorted = SassReader.list_all_partials
+    unsorted.inject( [] ) do |ordered, file|
       ordered = ordered | depth_first(file, ordered)
     end
   end

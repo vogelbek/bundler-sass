@@ -7,7 +7,7 @@ module SassReader
     hash = {file => clean_dependency_array}
   end
 
-  def self.list_partials
+  def self.list_all_partials
     Dir['**/*.*'].select{|partial| partial =~ /_\S+s[ac]ss\z/}
     #http://rubular.com/r/YCT1k8IaIv, but not at the start of string (for nested files)
   end

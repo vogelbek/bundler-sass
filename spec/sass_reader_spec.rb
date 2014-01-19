@@ -11,7 +11,7 @@ describe "SassReader" do
   before(:each) do
     Dir.chdir @test_directory
 
-    
+
   end
 
   context "build a dependency hash" do
@@ -56,14 +56,14 @@ describe "SassReader" do
       @hash_3 = build_file_and_hash @filename_3, @dependencies_3
     end
     it "should create an array of partial filenames in a directory" do
-      SassReader.list_partials.sort.should eq [@filename_3, @filename_1].sort
+      SassReader.list_all_partials.sort.should eq [@filename_3, @filename_1].sort
     end
     it "should create an array of partial filenames in subdirectories" do
       @local_root = Dir.getwd
-      @nested_directory = "nest"      
+      @nested_directory = "nest"
       Dir.mkdir @nested_directory
       Dir.chdir @nested_directory
-      
+
       @filename_4 = "_1_nest.css.sass"
       @dependencies_4 = ["_2.sass"]
       @hash_4 = build_file_and_hash @filename_4, @dependencies_4
@@ -72,7 +72,7 @@ describe "SassReader" do
       @dependencies_5 = ["#{@nested_directory}/_1_nest.sass"]
       @hash_5 = build_file_and_hash @filename_5, @dependencies_5
 
-      @second_nested = "secondnest"      
+      @second_nested = "secondnest"
       Dir.mkdir @second_nested
       Dir.chdir @second_nested
 
@@ -81,7 +81,7 @@ describe "SassReader" do
       @hash_6 = build_file_and_hash @filename_6, @dependencies_6
 
       Dir.chdir @local_root
-      SassReader.list_partials.sort.should eq [@filename_3,
+      SassReader.list_all_partials.sort.should eq [@filename_3,
                                           @filename_1,
                                           "#{@nested_directory}/#{@filename_5}",
                                           "#{@nested_directory}/#{@filename_4}",
