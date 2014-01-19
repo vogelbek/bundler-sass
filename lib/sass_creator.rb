@@ -2,10 +2,8 @@ module SassCreator
   class SassFiles
     attr_reader :file_hash
     def initialize file_hash
-      file_hash.each do |file, dependency_list|
-        File.open file, 'w'
-      end
       @file_hash = file_hash
+      create_files
     end
 
     def build_import_comments
@@ -27,6 +25,12 @@ module SassCreator
           end
         end
 
+      end
+    end
+
+    def create_files
+      @file_hash.each do |file, dependency_list|
+        File.open file, 'w'
       end
     end
   end
