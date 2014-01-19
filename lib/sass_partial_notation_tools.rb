@@ -1,6 +1,6 @@
 module SassPartial
   def self.shorthandify string
-    cleaning_agents = [/\_/, /\.scss/]
+    cleaning_agents = [/\_/, /\.scss/, /\.sass/]
     clean! string, cleaning_agents
   end
 
