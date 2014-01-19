@@ -16,7 +16,7 @@ RSpec.configure do |config|
 
   def build_file_and_hash filename, dependencies
     hash = {filename => dependencies}
-    file = SassCreator::SassFile.new(hash)
+    file = SassCreator::SassFiles.new(hash)
     file.build_import_comments
     hash
   end

@@ -7,21 +7,21 @@ describe "SassCreator module" do
     @root_directory = Dir.getwd
     Dir.mkdir @test_directory
   end
-  
+
   before(:each) do
     Dir.chdir @test_directory
   end
-  
+
   context "create partials" do
-    
+
     it "should create multiple Sass files" do
-      SassCreator::SassFile.new({"_1.sass" => [], "_2.sass" => []})
+      SassCreator::SassFiles.new({"_1.sass" => [], "_2.sass" => []})
       Dir.chdir(@root_directory)
       Dir.entries(@test_directory).include?("_2.sass").should eq true
     end
 
     it "should make any kind of Sass file" do
-      SassCreator::SassFile.new({"1.sass" => [], "2.sass.css" => [], "3.sass" => []})
+      SassCreator::SassFiles.new({"1.sass" => [], "2.sass.css" => [], "3.sass" => []})
       Dir.chdir(@root_directory)
       Dir.entries(@test_directory).include?("2.sass.css").should eq true
     end
@@ -29,7 +29,7 @@ describe "SassCreator module" do
 
   context "create files with dependencies" do
     it "should create a file with an //import statement" do
-      @partial = SassCreator::SassFile.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
+      @partial = SassCreator::SassFiles.new({"_1.sass" => ["_2.sass"], "_2.sass" => []})
       @partial.build_import_comments
       File.open("_1.sass", 'r').each do |line|
         line.chomp.should eq '//import "_2.sass"'
@@ -37,7 +37,7 @@ describe "SassCreator module" do
     end
 
     it "should create a file with many //import comments" do
-      @partial = SassCreator::SassFile.new({"_1.sass" => ["_2.sass", "_3.sass", "_4.sass"]})
+      @partial = SassCreator::SassFiles.new({"_1.sass" => ["_2.sass", "_3.sass", "_4.sass"]})
       @partial.build_import_comments
       @lines = String.new
       File.open("_1.sass", 'r').each_with_index do |line, index|
@@ -49,7 +49,7 @@ describe "SassCreator module" do
 
   context "create files with @import directives" do
     it "should create a file with @import directives" do
-      @build = SassCreator::SassFile.new({"manifest.sass" => ["_1.sass", "_3.sass", "_2.sass"]})
+      @build = SassCreator::SassFiles.new({"manifest.sass" => ["_1.sass", "_3.sass", "_2.sass"]})
       @build.build_imports
       @lines = String.new
       File.open("manifest.sass", 'r').each do |line|

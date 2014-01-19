@@ -1,7 +1,7 @@
 module SassCreator
-  class SassFile
+  class SassFiles
     def initialize file_hash
-      file_hash.each do |file, dependency_list| 
+      file_hash.each do |file, dependency_list|
         File.open file, 'w'
       end
       @dependencies = file_hash
