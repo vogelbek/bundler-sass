@@ -8,6 +8,10 @@ describe "Sass Partial Notation Tools" do
     Dir.mkdir @test_directory
   end
 
+  before :each do
+    Dir.chdir @test_directory
+  end
+
   context "turn 'partialname' shorthand into '_partialname.sass' partial" do
     it "Should determine which file the shorthand is referring to" do
       pending "Don't yet know the testing approach"
@@ -27,6 +31,10 @@ describe "Sass Partial Notation Tools" do
     it "Should trim .css as well" do
       pending "Should trim .css.scss or .css"
     end
+  end
+
+  after :each do
+    Dir.chdir @root_directory
   end
 
   after :all do
