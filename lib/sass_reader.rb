@@ -33,7 +33,7 @@ module SassReader
   end
 
   def self.clean_import! string
-    string.gsub! /\/\/import\s\"/, ""
+    string.gsub! /\/\/import\s/, ""
   end
 
   def self.clean_quote! string
