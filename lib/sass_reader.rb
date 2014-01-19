@@ -1,4 +1,8 @@
+require File.expand_path(File.dirname(__FILE__) + '/sass_partial_notation_tools')
+
 module SassReader
+  include SassPartial
+
   def self.dependencies file
     dependency_array = File.open(file, 'r').inject( [] ) do |dependency_array, line|
       dependency_array << line if is_import_comment? line
@@ -21,26 +25,13 @@ module SassReader
   private
 
   def self.clean_array dirty_array
-    dirty_array.map do |entry|
-      clean_import! entry
-      clean_quote! entry
-      clean_return! entry
+    cleaning_agents = [/\/\/import\s/, /\"/, /\n/]
+    dirty_array.map do |dirty_string|
+      SassPartial.clean! dirty_string, cleaning_agents
     end
   end
 
   def self.is_import_comment? line_to_try
     line_to_try =~ /\/\/import /
-  end
-
-  def self.clean_import! string
-    string.gsub! /\/\/import\s/, ""
-  end
-
-  def self.clean_quote! string
-    string.gsub! /\"/, ""
-  end
-
-  def self.clean_return! string
-    string.gsub! /\n/, ""
   end
 end
