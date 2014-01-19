@@ -9,11 +9,24 @@ describe "Sass Partial Notation Tools" do
   end
 
   context "turn 'partialname' shorthand into '_partialname.sass' partial" do
-    pending "Need to cross-reference partialname with all partials to infer the ending"
+    it "Should determine which file the shorthand is referring to" do
+      pending "Don't yet know the testing approach"
+    end
+    it "Should warn if the shorthand doesn't refer to a known file" do
+      pending "Need to figure out warnings"
+    end
+    it "Should warn if the shorthand ambigiously points to multiple files" do
+      pending "Wouldn't normally be reasonable in a Sass project anyways"
+    end
   end
 
   context "turn '_partialname.sass' partial into 'partialname' shorthand" do
-    pending "Just need to trim _ and .sass"
+    it "Should trim .sass or .scss" do
+      pending "Trim either ending"
+    end
+    it "Should trim .css as well" do
+      pending "Should trim .css.scss or .css"
+    end
   end
 
   after :all do
