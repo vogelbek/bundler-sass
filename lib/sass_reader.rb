@@ -6,8 +6,10 @@ module SassReader
     if array.empty?
       hash = {file => []}
     else
-      clean_array = array.map do |entry| 
-        entry.gsub(/\/\/import\s\"/,"").gsub(/\"/,"").gsub(/\n/,"")
+      clean_array = array.map do |entry|
+        clean_import! entry
+        clean_quote! entry
+        clean_return! entry
       end
       hash = {file => clean_array}
     end
@@ -22,5 +24,19 @@ module SassReader
     partials.inject({}) do |hash, partial|
       hash.merge self.dependencies(partial)
     end
+  end
+
+  private
+
+  def self.clean_import! string
+    string.gsub! /\/\/import\s\"/, ""
+  end
+
+  def self.clean_quote! string
+    string.gsub! /\"/, ""
+  end
+
+  def self.clean_return! string
+    string.gsub! /\n/, ""
   end
 end
