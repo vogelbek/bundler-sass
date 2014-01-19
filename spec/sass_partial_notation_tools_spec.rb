@@ -39,7 +39,8 @@ describe "Sass Partial Notation Tools" do
       SassPartial.shorthandify(@sass[:partial]).should eq @sass[:shorthand]
     end
     it "Should trim .css as well" do
-      pending "Should trim .css.scss or .css"
+      SassPartial.shorthandify(@cssscss[:partial]).should eq @cssscss[:shorthand]
+      SassPartial.shorthandify(@csssass[:partial]).should eq @csssass[:shorthand]
     end
   end
 
