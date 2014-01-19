@@ -38,9 +38,14 @@ describe "Sass Partial Notation Tools" do
       SassPartial.shorthandify(@scss[:partial]).should eq @scss[:shorthand]
       SassPartial.shorthandify(@sass[:partial]).should eq @sass[:shorthand]
     end
+
     it "Should trim .css as well" do
       SassPartial.shorthandify(@cssscss[:partial]).should eq @cssscss[:shorthand]
       SassPartial.shorthandify(@csssass[:partial]).should eq @csssass[:shorthand]
+    end
+
+    it "Should handle nested partials" do
+      SassPartial.shorthandify(@nested_partial[:partial]).should eq @nested_partial[:shorthand]
     end
   end
 
