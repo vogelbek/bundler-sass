@@ -25,8 +25,17 @@ describe "Sass Partial Notation Tools" do
   end
 
   context "turn '_partialname.sass' partial into 'partialname' shorthand" do
+    before :each do
+      @scss = {partial: '_scss.scss', shorthand: 'scss'}
+      @sass = {partial: '_sass.sass', shorthand: 'sass'}
+      @cssscss = {partial: 'cssscss.css.scss', shorthand: 'cssscss'}
+      @csssass = {partial: 'csssass.css.sass', shorthand: 'csssass'}
+      @nest_dir = 'nest'
+      @nested_partial = {partial: "#{@nest_dir}/_nest.sass", shorthand: "#{@nest_dir}/nest"}
+    end
+
     it "Should trim .sass or .scss" do
-      pending "Trim either ending"
+      SassPartial.shorthandify(@scss[:partial]).should eq @scss[:shorthand]
     end
     it "Should trim .css as well" do
       pending "Should trim .css.scss or .css"
