@@ -1,7 +1,7 @@
 module SassReader
   def self.dependencies file
     dependency_array = File.open(file, 'r').inject( [] ) do |dependency_array, line|
-      dependency_array << line if line =~ /\/\/import /
+      add_import_comment line, dependency_array
     end
     clean_dependency_array = clean_array( dependency_array )
     hash = {file => clean_dependency_array}
@@ -26,6 +26,10 @@ module SassReader
       clean_quote! entry
       clean_return! entry
     end
+  end
+
+  def self.add_import_comment line_to_try, array_to_append
+    array_to_append << line_to_try if line_to_try =~ /\/\/import /
   end
 
   def self.clean_import! string
