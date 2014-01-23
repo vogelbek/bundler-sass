@@ -17,10 +17,13 @@ describe "Sass Partial Notation Tools" do
       @partial = {partial: '_partial', shorthand: 'partial'}
       @nest_dir = 'nest'
       @nested_partial = {partial: "#{@nest_dir}/_nest", shorthand: "#{@nest_dir}/nest"}
+      @nested_nested = {partial: "#{@nest_dir}/#{@nest_dir}/_nest",
+                        shorthand: "#{@nest_dir}/#{@nest_dir}/nest"}
     end
     it "shouldn't matter if the file is .scss or .sass, so match based on path/name only" do
       SassPartial.partialize(@partial[:shorthand]).should eq @partial[:partial]
       SassPartial.partialize(@nested_partial[:shorthand]).should eq @nested_partial[:partial]
+      SassPartial.partialize(@nested_nested[:shorthand]).should eq @nested_nested[:partial]
     end
   end
 
