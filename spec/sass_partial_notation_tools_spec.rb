@@ -21,9 +21,9 @@ describe "Sass Partial Notation Tools" do
                         shorthand: "#{@nest_dir}/#{@nest_dir}/nest"}
     end
     it "shouldn't matter if the file is .scss or .sass, so match based on path/name only" do
-      SassPartial.partialize(@partial[:shorthand]).should eq @partial[:partial]
-      SassPartial.partialize(@nested_partial[:shorthand]).should eq @nested_partial[:partial]
-      SassPartial.partialize(@nested_nested[:shorthand]).should eq @nested_nested[:partial]
+      SassPartialTools.partialize(@partial[:shorthand]).should eq @partial[:partial]
+      SassPartialTools.partialize(@nested_partial[:shorthand]).should eq @nested_partial[:partial]
+      SassPartialTools.partialize(@nested_nested[:shorthand]).should eq @nested_nested[:partial]
     end
   end
 
@@ -38,17 +38,17 @@ describe "Sass Partial Notation Tools" do
     end
 
     it "Should trim .sass or .scss" do
-      SassPartial.shorthandify(@scss[:partial]).should eq @scss[:shorthand]
-      SassPartial.shorthandify(@sass[:partial]).should eq @sass[:shorthand]
+      SassPartialTools.shorthandify(@scss[:partial]).should eq @scss[:shorthand]
+      SassPartialTools.shorthandify(@sass[:partial]).should eq @sass[:shorthand]
     end
 
     it "Should trim .css as well" do
-      SassPartial.shorthandify(@cssscss[:partial]).should eq @cssscss[:shorthand]
-      SassPartial.shorthandify(@csssass[:partial]).should eq @csssass[:shorthand]
+      SassPartialTools.shorthandify(@cssscss[:partial]).should eq @cssscss[:shorthand]
+      SassPartialTools.shorthandify(@csssass[:partial]).should eq @csssass[:shorthand]
     end
 
     it "Should handle nested partials" do
-      SassPartial.shorthandify(@nested_partial[:partial]).should eq @nested_partial[:shorthand]
+      SassPartialTools.shorthandify(@nested_partial[:partial]).should eq @nested_partial[:shorthand]
     end
   end
 

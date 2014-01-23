@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/sass_partial_notation_tools')
 
 module SassReader
-  include SassPartial
+  include SassPartialTools
 
   def self.dependencies file
     dependency_array = File.open(file, 'r').inject( [] ) do |dependency_array, line|
@@ -27,7 +27,7 @@ module SassReader
   def self.clean_array dirty_array
     cleaning_agents = [/\/\/import\s/, /\"/, /\n/]
     dirty_array.map do |dirty_string|
-      SassPartial.clean! dirty_string, cleaning_agents
+      SassPartialTools.clean! dirty_string, cleaning_agents
     end
   end
 
