@@ -12,15 +12,9 @@ describe "Sass Partial Notation Tools" do
     Dir.chdir @test_directory
   end
 
-  context "turn 'partialname' shorthand into '_partialname.sass' partial" do
-    it "Should determine which file the shorthand is referring to" do
+  context "turn 'partialname' shorthand into '_partialname' partial" do
+    it "shouldn't matter if the file is .scss or .sass, so match based on path/name only" do
       pending "Don't yet know the testing approach"
-    end
-    it "Should warn if the shorthand doesn't refer to a known file" do
-      pending "Need to figure out warnings"
-    end
-    it "Should warn if the shorthand ambigiously points to multiple files" do
-      pending "Wouldn't normally be reasonable in a Sass project anyways"
     end
   end
 
