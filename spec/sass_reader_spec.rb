@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_creator')
 require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_reader')
+require File.expand_path(File.dirname(__FILE__) + '/../lib/sass_partial_notation_tools')
 
 describe "SassReader" do
   before(:all) do
@@ -56,7 +57,7 @@ describe "SassReader" do
       @hash_3 = build_file_and_hash @filename_3, @dependencies_3
     end
     it "should create an array of partial filenames in a directory" do
-      SassReader.list_all_partials.sort.should eq [@filename_3, @filename_1].sort
+      SassPartialTools.list_all_partials.sort.should eq [@filename_3, @filename_1].sort
     end
     it "should create an array of partial filenames in subdirectories" do
       @local_root = Dir.getwd
@@ -81,7 +82,7 @@ describe "SassReader" do
       @hash_6 = build_file_and_hash @filename_6, @dependencies_6
 
       Dir.chdir @local_root
-      SassReader.list_all_partials.sort.should eq [@filename_3,
+      SassPartialTools.list_all_partials.sort.should eq [@filename_3,
                                           @filename_1,
                                           "#{@nested_directory}/#{@filename_5}",
                                           "#{@nested_directory}/#{@filename_4}",

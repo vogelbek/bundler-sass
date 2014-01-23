@@ -19,11 +19,6 @@ module SassReader
 
   private
 
-  def self.list_all_partials
-    Dir['**/*.*'].select{|partial| partial =~ /_\S+s[ac]ss\z/}
-    #http://rubular.com/r/YCT1k8IaIv, but not at the start of string (for nested files)
-  end
-
   def self.clean_array dirty_array
     cleaning_agents = [/\/\/import\s/, /\"/, /\n/]
     dirty_array.map do |dirty_string|

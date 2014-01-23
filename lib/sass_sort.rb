@@ -1,11 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/sass_reader')
+require File.expand_path(File.dirname(__FILE__) + '/sass_partial_notation_tools')
 
 module SassSort
   include SassReader
-
+  include SassPartialTools
 
   def self.import_order
-    unsorted = SassReader.list_all_partials
+    unsorted = SassPartialTools.list_all_partials
     unsorted.inject( [] ) do |ordered, file|
       ordered = ordered | depth_first(file, ordered)
     end

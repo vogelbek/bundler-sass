@@ -10,6 +10,11 @@ module SassPartialTools
 
   private
 
+  def self.list_all_partials
+    Dir['**/*.*'].select{|partial| partial =~ /_\S+s[ac]ss\z/}
+    #http://rubular.com/r/YCT1k8IaIv, but not at the start of string (for nested files)
+  end
+
   def self.clean! string, cleaning_agents
     cleaning_agents.inject( string ) do |cleaner_string, cleaning_regex|
       cleaner_string.gsub cleaning_regex, ''
