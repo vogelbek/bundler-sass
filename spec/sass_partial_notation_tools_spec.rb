@@ -13,8 +13,14 @@ describe "Sass Partial Notation Tools" do
   end
 
   context "turn 'partialname' shorthand into '_partialname' partial" do
+    before :each do
+      @partial = {partial: '_partial', shorthand: 'partial'}
+      @nest_dir = 'nest'
+      @nested_partial = {partial: "#{@nest_dir}/_nest", shorthand: "#{@nest_dir}/nest"}
+    end
     it "shouldn't matter if the file is .scss or .sass, so match based on path/name only" do
-      pending "Don't yet know the testing approach"
+      SassPartial.partialize(@partial[:shorthand]).should eq @partial[:partial]
+      SassPartial.partialize(@nested_partial[:shorthand]).should eq @nested_partial[:partial]
     end
   end
 
