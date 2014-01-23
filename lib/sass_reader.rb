@@ -11,11 +11,6 @@ module SassReader
     hash = {file => clean_dependency_array}
   end
 
-  def self.list_all_partials
-    Dir['**/*.*'].select{|partial| partial =~ /_\S+s[ac]ss\z/}
-    #http://rubular.com/r/YCT1k8IaIv, but not at the start of string (for nested files)
-  end
-
   def self.build_dependency_hash partials
     partials.inject({}) do |hash, partial|
       hash.merge dependencies(partial)
@@ -23,6 +18,11 @@ module SassReader
   end
 
   private
+
+  def self.list_all_partials
+    Dir['**/*.*'].select{|partial| partial =~ /_\S+s[ac]ss\z/}
+    #http://rubular.com/r/YCT1k8IaIv, but not at the start of string (for nested files)
+  end
 
   def self.clean_array dirty_array
     cleaning_agents = [/\/\/import\s/, /\"/, /\n/]
