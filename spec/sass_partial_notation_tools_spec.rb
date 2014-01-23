@@ -27,6 +27,25 @@ describe "Sass Partial Notation Tools" do
     end
   end
 
+  context "determine which partails exist" do
+    before(:each) do
+      @filename_1 = "_1.sass"
+      @dependencies_1 = ["_2.sass"]
+      @hash_1 = build_file_and_hash @filename_1, @dependencies_1
+
+      @filename_2 = "A.sass"
+      @dependencies_2 = ["_1.sass"]
+      @hash_2 = build_file_and_hash @filename_2, @dependencies_2
+
+      @filename_3 = "_2.sass"
+      @dependencies_3 = []
+      @hash_3 = build_file_and_hash @filename_3, @dependencies_3
+    end
+    it "should create an array of partial filenames in a directory" do
+      SassPartialTools.list_all_partials.sort.should eq [@filename_3, @filename_1].sort
+    end
+  end
+
   context "turn '_partialname.sass' partial into 'partialname' shorthand" do
     before :each do
       @scss = {partial: '_scss.scss', shorthand: 'scss'}

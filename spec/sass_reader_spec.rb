@@ -56,9 +56,6 @@ describe "SassReader" do
       @dependencies_3 = []
       @hash_3 = build_file_and_hash @filename_3, @dependencies_3
     end
-    it "should create an array of partial filenames in a directory" do
-      SassPartialTools.list_all_partials.sort.should eq [@filename_3, @filename_1].sort
-    end
     it "should create an array of partial filenames in subdirectories" do
       @local_root = Dir.getwd
       @nested_directory = "nest"
