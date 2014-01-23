@@ -18,7 +18,7 @@ module SassReader
 
   def self.build_dependency_hash partials
     partials.inject({}) do |hash, partial|
-      hash.merge self.dependencies(partial)
+      hash.merge dependencies(partial)
     end
   end
 
